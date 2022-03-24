@@ -35,7 +35,7 @@
             <span class="input-group-addon">
               <span class="fa fa-table"></span>
             </span>
-            <input type="text" class="form-control datepicker input-md" name="tanggal_lahir_warga" size="20" readonly="readonly" value="<?php echo $data_warga[0]['tanggal_lahir_warga'] ?>" />
+            <input type="text" class="form-control datepicker input-md" name="tanggal_lahir_warga" size="20" value="<?php echo ($data_warga[0]['tanggal_lahir_warga'] == "0000-00-00") ? null : $data_warga[0]['tanggal_lahir_warga'] ?>" />
           </div>
           <span class="help-block">
             <?php # echo form_error('tgl_kelahiran', '<p class="field_error">','</p>')
