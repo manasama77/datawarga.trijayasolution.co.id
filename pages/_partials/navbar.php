@@ -30,7 +30,19 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-newspaper-o fa-fw"></i> Peristiwa <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../kelahiran"><i class="fa fa-venus-mars fa-fw"></i> Kelahiran</a></li>
-            <li><a href="../meninggal"><i class="fa fa-ambulance fa-fw"></i> Kematian</a></li>
+            <!-- <li><a href="../meninggal"><i class="fa fa-ambulance fa-fw"></i> Kematian</a></li> -->
+            <li>
+              <a href="../peristiwa-kerja-luar_negeri-atau-kota" class="list-group-item">Bekerja Luar Negeri / Kota</a>
+            </li>
+            <li>
+              <a href="../peristiwa-belum-bekerja" class="list-group-item">Belum Bekerja</a>
+            </li>
+            <li>
+              <a href="../peristiwa-kematian" class="list-group-item">Kematian</a>
+            </li>
+            <li>
+              <a href="../peristiwa-keterangan-usaha" class="list-group-item">Keterangan Usaha</a>
+            </li>
           </ul>
         </li>
         <?php if ($_SESSION['user']['status_user'] != 'Kasi_Pemerintahan') : ?>

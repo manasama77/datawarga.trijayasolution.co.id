@@ -51,7 +51,11 @@ function is_active($page)
       <div id="peristiwa" class="collapse">
         <div class="list-group">
           <a href="../kelahiran" class="list-group-item"><i class="fa fa-venus-mars fa-fw"></i> Kelahiran</a>
-          <a href="../meninggal" class="list-group-item"><i class="fa fa-ambulance fa-fw"></i> Kematian</a>
+          <!-- <a href="../meninggal" class="list-group-item"><i class="fa fa-ambulance fa-fw"></i> Kematian</a> -->
+          <a href="../peristiwa-kerja-luar_negeri-atau-kota" class="list-group-item">Bekerja Luar Negeri / Kota</a>
+          <a href="../peristiwa-belum-bekerja" class="list-group-item">Belum Bekerja</a>
+          <a href="../peristiwa-kematian" class="list-group-item">Kematian</a>
+          <a href="../peristiwa-keterangan-usaha" class="list-group-item">Keterangan Usaha</a>
         </div>
       </div>
 
