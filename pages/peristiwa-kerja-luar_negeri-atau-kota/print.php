@@ -1,6 +1,8 @@
 <?php
 include('../../config/koneksi.php');
 require '../helper_tanggal_indo.php';
+require '../constant.php';
+
 $id = $_GET['id'];
 
 $sql = "
@@ -66,22 +68,7 @@ if (mysqli_num_rows($query_warga) == 0) {
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="col-12" style="height: 120px;">
-                            <img src="../../assets/img/logo.png" class="float-left" style="height: 130px;" />
-                            <h4 style="top: 0; position: absolute; width:100%;" class="text-center">
-                                PEMERINTAH KABUPATEN LEBAK<br />
-                                KECAMATAN MALINGPING<br />
-                                DESA MALINGPING SELATAN<br />
-                                <p style="line-height: 14pt; font-size: 14px; margin-top: 10px;">
-                                    Alamat : Jalan Lebak Lame Desa Malingping Selatan Kecamatan Malingping 42391<br />
-                                    e-mail : malingpingselatan2018@gmail.com
-                                </p>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
+                <?php include('../_partials/print_header.php'); ?>
                 <hr style="border-top: 5px solid black;" />
                 <table class="table table-borderless table-condensed table-sm w-100 p-0">
                     <tbody>
@@ -93,7 +80,7 @@ if (mysqli_num_rows($query_warga) == 0) {
                         </tr>
                         <tr>
                             <td colspan="3">
-                                Yang bertanda tangan dibawah ini Kepala Desa Malingping Selatan menerangkan bahwa :
+                                Yang bertanda tangan dibawah ini <?= PERWAKILAN; ?> menerangkan bahwa :
                             </td>
                         </tr>
                         <tr>
@@ -255,14 +242,13 @@ if (mysqli_num_rows($query_warga) == 0) {
                                 <div class="row">
                                     <div class="col-6 text-center"></div>
                                     <div class="col-6 text-center font-weight-bold">
-                                        Malingping Selatan, <?= tanggal_indo_no_dash($row_warga['tanggal_pembuatan']); ?>
+                                        <?= DESA; ?>, <?= tanggal_indo_no_dash($row_warga['tanggal_pembuatan']); ?>
                                     </div>
                                     <div class="col-6">
                                         Pelapor,
                                     </div>
                                     <div class="col-6">
-                                        a.n. Kepala Desa <br />
-                                        Kepala Urusan Umum,
+                                        <?= TTD_TITLE; ?>
                                     </div>
                                     <div class="col-6" style="height: 100px;"></div>
                                     <div class="col-6" style="height: 100px;"></div>
@@ -270,8 +256,7 @@ if (mysqli_num_rows($query_warga) == 0) {
                                         <?= $row_warga['nama_pelapor']; ?>
                                     </div>
                                     <div class="col-6 font-weight-bold">
-                                        M. AGUNG TAMARA R.<br />
-                                        NRPDes.198610202001062046
+                                        <?= TTD_NAME; ?>
                                     </div>
                                 </div>
                             </td>

@@ -1,5 +1,6 @@
 <?php
 include('../../config/koneksi.php');
+require '../constant.php';
 
 $tanggal_pembuatan = $_POST['tanggal_pembuatan'];
 $warga_id          = $_POST['warga_id_hidden'];
@@ -11,7 +12,7 @@ $pelapor_id        = $_POST['pelapor_id_hidden'];
 $hubungan_pelapor  = $_POST['hubungan_pelapor'];
 $hari              = day_name_indo($_POST['tanggal_kematian']);
 
-$sql   = "SELECT `kematian`.`sequence` FROM `kematian` WHERE tanggal_pembuatan = '" . date('Y-m-d') . "' ORDER BY sequence DESC";
+$sql   = "SELECT `kematian`.`sequence` FROM `kematian` ORDER BY sequence DESC";
 $query = mysqli_query($db, $sql);
 
 $sequence = 1;
@@ -28,7 +29,7 @@ if (mysqli_num_rows($query) > 0) {
     }
 }
 
-$nomor_surat = '140/' . $no_urut . '- Pemdes.Mlp.Sel/' . date('Y');
+$nomor_surat = '140/' . $no_urut . '- ' . KODE_DESA_SURAT . '/' . date('Y');
 
 $sql = "
 INSERT INTO `kematian` 

@@ -1,10 +1,11 @@
 <?php
 include('../../config/koneksi.php');
+require '../constant.php';
 
 $warga_id          = $_POST['warga_id_hidden'];
 $tanggal_pembuatan = date('Y-m-d');
 
-$sql   = "SELECT `belum_bekerja`.`sequence` FROM `belum_bekerja` WHERE tanggal_pembuatan = '" . date('Y-m-d') . "' ORDER BY sequence DESC";
+$sql   = "SELECT `belum_bekerja`.`sequence` FROM `belum_bekerja` ORDER BY sequence DESC";
 $query = mysqli_query($db, $sql);
 
 $sequence = 1;
@@ -21,7 +22,7 @@ if (mysqli_num_rows($query) > 0) {
     }
 }
 
-$nomor_surat = '140/' . $no_urut . '- Pemdes.Mlp.Sel/' . date('Y');
+$nomor_surat = '140/' . $no_urut . '- ' . KODE_DESA_SURAT . '/' . date('Y');
 
 $sql = "
 INSERT INTO `belum_bekerja` 
