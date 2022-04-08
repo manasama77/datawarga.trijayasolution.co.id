@@ -1,5 +1,8 @@
 <?php
 define("DESA",  "Gebang Raya");
+define("KECAMATAN",  "Periuk");
+define("KOKAB",  "Kota Tangerang");
+define("PROVINSI",  "Banten");
 define("ALAMAT",  "Griya Sangiang Mas Jl.Melati II Blok A4 No.5 Rt 01 Rw 08 Kel.Gebang Raya  Kec.Periuk Kota Tangerang");
 define("EMAIL",  "argantrian@gmail.com");
 define("KODE_DESA_SURAT",  "Pemdes.Gbng.Rya");
