@@ -29,8 +29,6 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-newspaper-o fa-fw"></i> Peristiwa <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <!-- <li><a href="../kelahiran"><i class="fa fa-venus-mars fa-fw"></i> Kelahiran</a></li> -->
-            <!-- <li><a href="../meninggal"><i class="fa fa-ambulance fa-fw"></i> Kematian</a></li> -->
             <li>
               <a href="../peristiwa-kelahiran" class="list-group-item">Kelahiran</a>
             </li>
@@ -45,6 +43,15 @@
             </li>
             <li>
               <a href="../peristiwa-keterangan-usaha" class="list-group-item">Keterangan Usaha</a>
+            </li>
+            <li>
+              <a href="../peristiwa-tidak-mampu-kesehatan-puskesmas" class="list-group-item">Keterangan Tidak Mampu Untuk Kesehatan (PUSKESMAS)</a>
+            </li>
+            <li>
+              <a href="../peristiwa-tidak-mampu-kesehatan-rsud" class="list-group-item">Keterangan Tidak Mampu Untuk Kesehatan (RSUD)</a>
+            </li>
+            <li>
+              <a href="../peristiwa-tidak-mampu-sekolah" class="list-group-item">Keterangan Tidak Mampu Untuk Sekolah</a>
             </li>
           </ul>
         </li>
