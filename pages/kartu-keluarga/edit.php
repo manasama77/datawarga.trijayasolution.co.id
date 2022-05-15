@@ -20,7 +20,7 @@
       <th>Kepala Keluarga</th>
       <td>:</td>
       <td>
-        <select class="form-control selectlive" name="id_kepala_keluarga" required>
+        <select class="form-control selectlive" id="id_kepala_keluarga" name="id_kepala_keluarga" required>
           <option value="<?php echo $data_keluarga[0]['id_warga'] ?>" selected><?php echo $data_keluarga[0]['nama_warga'] ?></option>
           <?php foreach ($data_warga as $warga) : ?>
             <option value="<?php echo $warga['id_warga'] ?>">
@@ -37,48 +37,42 @@
     <tr>
       <th width="20%">Alamat</th>
       <td width="1%">:</td>
-      <td><input type="text" class="form-control" name="alamat_keluarga" value="<?php echo $data_keluarga[0]['alamat_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="alamat_keluarga" name="alamat_keluarga" value="<?php echo $data_keluarga[0]['alamat_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>RT</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="rt_keluarga" value="<?php echo $data_keluarga[0]['rt_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="rt_keluarga" name="rt_keluarga" value="<?php echo $data_keluarga[0]['rt_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>RW</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="rw_keluarga" value="<?php echo $data_keluarga[0]['rw_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="rw_keluarga" name="rw_keluarga" value="<?php echo $data_keluarga[0]['rw_keluarga'] ?>"></td>
     </tr>
-    <!-- <tr>
-    <th>Dusun</th>
-    <td>:</td>
-    <td><input type="text" class="form-control" name="dusun_keluarga" value="<?php echo $data_keluarga[0]['dusun_keluarga'] ?>"></td>
-  </tr> -->
-
     <tr>
       <th>Kode Pos</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="kode_pos_keluarga" value="<?php echo $data_keluarga[0]['kode_pos_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="kode_pos_keluarga" name="kode_pos_keluarga" value="<?php echo $data_keluarga[0]['kode_pos_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>Desa/Kelurahan</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="desa_kelurahan_keluarga" value="<?php echo $data_keluarga[0]['desa_kelurahan_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="desa_kelurahan_keluarga" name="desa_kelurahan_keluarga" value="<?php echo $data_keluarga[0]['desa_kelurahan_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>Kecamatan</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="kecamatan_keluarga" value="<?php echo $data_keluarga[0]['kecamatan_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="kecamatan_keluarga" name="kecamatan_keluarga" value="<?php echo $data_keluarga[0]['kecamatan_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>Kabupaten/Kota</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="kabupaten_kota_keluarga" value="<?php echo $data_keluarga[0]['kabupaten_kota_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="kabupaten_kota_keluarga" name="kabupaten_kota_keluarga" value="<?php echo $data_keluarga[0]['kabupaten_kota_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>Provinsi</th>
       <td>:</td>
-      <td><input type="text" class="form-control" name="provinsi_keluarga" value="<?php echo $data_keluarga[0]['provinsi_keluarga'] ?>"></td>
+      <td><input type="text" class="form-control" id="provinsi_keluarga" name="provinsi_keluarga" value="<?php echo $data_keluarga[0]['provinsi_keluarga'] ?>"></td>
     </tr>
     <tr>
       <th>Negara</th>
@@ -98,3 +92,38 @@
 </form>
 
 <?php include('../_partials/bottom.php') ?>
+
+<script>
+  $(document).ready(() => {
+    $('#id_kepala_keluarga').on('change', () => {
+      let id_kepala_keluarga = $('#id_kepala_keluarga :selected').val()
+      if (id_kepala_keluarga != "") {
+        autoFillData(id_kepala_keluarga)
+      }
+    })
+  })
+
+  function autoFillData(id_kepala_keluarga) {
+    $.ajax({
+      url: `ajax_kk.php`,
+      method: 'GET',
+      data: {
+        id_kepala_keluarga: id_kepala_keluarga,
+      },
+      dataType: 'JSON'
+    }).error(e => {
+      console.log(e.responseText)
+    }).done(e => {
+      console.log(e)
+      if (e.code == 200) {
+        $('#alamat_keluarga').val(e.data.alamat_warga)
+        $('#rt_keluarga').val(e.data.rt_warga)
+        $('#rw_keluarga').val(e.data.rw_warga)
+        $('#desa_kelurahan_keluarga').val(e.data.desa_kelurahan_warga)
+        $('#kecamatan_keluarga').val(e.data.kecamatan_warga)
+        $('#kabupaten_kota_keluarga').val(e.data.kabupaten_kota_warga)
+        $('#provinsi_keluarga').val(e.data.provinsi_warga)
+      }
+    })
+  }
+</script>
