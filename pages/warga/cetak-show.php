@@ -17,7 +17,7 @@ class PDF extends FPDF
         // Title
         $this->Cell(200, 8, 'PEMERINTAH KOTA TANGERANG', 0, 1, 'C');
         $this->Cell(200, 8, 'KECAMATAN GEBANG RAYA', 0, 1, 'C');
-        $this->Cell(200, 8, 'DESA PERIUK', 0, 1, 'C');
+        $this->Cell(200, 8, 'KELURAHAN PERIUK', 0, 1, 'C');
         // Line break
         $this->Ln(5);
 
