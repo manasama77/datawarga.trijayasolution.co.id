@@ -101,7 +101,7 @@
       <th>RT</th>
       <td>:</td>
       <td>
-        <input type="number" class="form-control" name="rt_warga" required />
+        <input type="number" class="form-control" name="rt_warga" value="<?= $data_warga[0]['rt_warga']; ?>" required />
         <!-- <select class="form-control selectpicker" name="rt_warga" required>
           <option value="<?php echo $data_warga[0]['rt_warga'] ?>" selected><?php echo $data_warga[0]['rt_warga'] ?></option>
           <option value="01">01</option>
@@ -117,7 +117,7 @@
       <th>RW</th>
       <td>:</td>
       <td>
-        <input type="number" class="form-control" name="rw_warga" required />
+        <input type="number" class="form-control" name="rw_warga" value="<?= $data_warga[0]['rw_warga']; ?>" required />
         <!-- <select class="form-control selectpicker" name="rw_warga" required>
           <option value="<?php echo $data_warga[0]['rw_warga'] ?>" selected><?php echo $data_warga[0]['rw_warga'] ?></option>
           <option value="01">01</option>
