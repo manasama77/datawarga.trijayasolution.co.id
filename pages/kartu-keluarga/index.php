@@ -64,11 +64,9 @@
                   <a href="edit.php?id_keluarga=<?php echo $kartu_keluarga['id_keluarga'] ?>"><span class="glyphicon glyphicon-edit"></span> Ubah</a>
                 </li>
                 <li class="divider"></li>
-                <!--
-            <li>
-              <a href="delete.php?id_keluarga=<?php echo $kartu_keluarga['id_keluarga'] ?>" onclick="return confirm('Yakin hapus dari anggota?')"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
-            </li>
-          -->
+                <li>
+                  <a href="delete.php?id_keluarga=<?php echo $kartu_keluarga['id_keluarga'] ?>" onclick="return confirm('Yakin hapus Kartu Keluarga?')"><span class="glyphicon glyphicon-trash"></span> Hapus</a>
+                </li>
               <?php endif; ?>
             </ul>
           </div>
