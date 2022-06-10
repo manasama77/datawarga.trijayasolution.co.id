@@ -12,6 +12,7 @@ $sql_mutasi = "
     warga.jenis_kelamin_warga,
     warga.tanggal_lahir_warga,
     mutasi_masuk.tanggal_pindah,
+    mutasi_masuk.jenis_kepindahan,
     mutasi_masuk.alasan_pindah
   FROM warga 
   RIGHT JOIN mutasi_masuk ON mutasi_masuk.id_warga = warga.id_warga

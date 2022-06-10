@@ -1,20 +1,46 @@
 <?php include('../_partials/top.php') ?>
+<?php
+include('_partials/menu.php');
+include('data-index.php');
+include('../dasbor/data-index.php');
+include('./_partials/Helper.php');
+unset_session_form();
+?>
 
 <h1 class="page-header">Data Mutasi Datang</h1>
-<?php include('_partials/menu.php') ?>
 
-<?php include('data-index.php') ?>
-<?php include('../dasbor/data-index.php') ?>
-
+<?php
+if (isset($_SESSION['success'])) {
+?>
+	<div class="alert alert-success alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<strong><?= $_SESSION['success']; ?></strong>
+	</div>
+<?php
+}
+unset($_SESSION['success']);
+?>
+<?php
+if (isset($_SESSION['warning'])) {
+?>
+	<div class="alert alert-warning alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<strong><?= $_SESSION['warning']; ?></strong>
+	</div>
+<?php
+}
+unset($_SESSION['warning']);
+?>
 <table class="table table-striped table-condensed table-hover" id="datatable">
 	<thead>
 		<tr>
 			<th>#</th>
 			<th>NIK</th>
-			<th>Nama Mutasi</th>
+			<th>Nama Warga</th>
 			<th>L/P</th>
 			<th>Tgl Lahir</th>
 			<th>Tanggal Mutasi</th>
+			<th>Jenis Mutasi</th>
 			<th>Alasan Mutasi</th>
 			<th>Aksi</th>
 		</tr>
@@ -43,6 +69,7 @@
 					}
 					?>
 				</td>
+				<td><?php echo $mutasi['jenis_kepindahan'] ?></td>
 				<td><?php echo $mutasi['alasan_pindah'] ?></td>
 				<td>
 					<div class="btn-group pull-right">
@@ -51,7 +78,8 @@
 						</button>
 						<ul class="dropdown-menu pull-right" role="menu">
 							<li>
-								<a href="show.php?id_mutasi_masuk=<?php echo $mutasi['id_mutasi_masuk'] ?>"><i class="glyphicon glyphicon-sunglasses"></i> Detail</a>
+								<!-- <a href="show.php?id_mutasi_masuk=<?php echo $mutasi['id_mutasi_masuk'] ?>"><i class="glyphicon glyphicon-sunglasses"></i> Detail</a> -->
+								<a href="#" class="btn_detail" data-id="<?= $mutasi['id_mutasi_masuk'] ?>"><i class="glyphicon glyphicon-sunglasses"></i> Detail</a>
 							</li>
 							<li>
 								<a href="cetak-show.php?id_mutasi_masuk=<?php echo $mutasi['id_mutasi_masuk'] ?>" target="_blank"><i class="glyphicon glyphicon-print"></i> Cetak</a>
@@ -93,4 +121,197 @@
 	</dl>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Detail Mutasi Datang</h4>
+			</div>
+			<div class="modal-body" id="v_detail">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
 <?php include('../_partials/bottom.php') ?>
+
+<script>
+	$(document).ready(function() {
+		$('.btn_detail').on('click', function(e) {
+			e.preventDefault()
+			showDetail($(this).data('id'))
+		})
+	})
+
+	function showDetail(id) {
+		$.ajax({
+			url: `data-show.php`,
+			method: 'get',
+			dataType: 'json',
+			data: {
+				id_mutasi_masuk: id
+			}
+		}).fail(e => {
+			console.log(e.responseText)
+		}).done(e => {
+			if (e.code == 400) {
+				alert(`${e.message}`)
+			} else if (e.code == 200) {
+				let htmlnya = ``
+
+				htmlnya += `
+					<table class="table table-striped table-middle">
+						<tr>
+							<th width="20%">Jenis Kepindahan</th>
+							<td width="1%">:</td>
+							<td id="jenis_kepindahan">${e.data.jenis_kepindahan}</td>
+						</tr>
+					</table>
+				`
+
+				let group_kepala = ``
+				let group_anggota = ``
+				if (e.data.jenis_kepindahan == "Kepala Keluarga") {
+					group_kepala = `
+						<tr>
+							<th width="20%">Nomor Kartu Keluarga</th>
+							<td width="1%">:</td>
+							<td id="nomor_keluarga">${e.data.nomor_keluarga}</td>
+						</tr>
+					`
+				} else if (e.data.jenis_kepindahan == "Anggota Keluarga") {
+					group_anggota = `
+						<tr>
+							<th width="20%">Nomor Kartu Keluarga</th>
+							<td width="1%">:</td>
+							<td id="nomor_keluarga">${e.data.nomor_keluarga}</td>
+						</tr>
+						<tr>
+							<th width="20%">Kepala Keluarga</th>
+							<td width="1%">:</td>
+							<td id="nomor_keluarga">(${e.data.nik_kepala_keluarga}) ${e.data.nama_kepala_keluarga}</td>
+						</tr>
+					`
+				}
+
+				htmlnya += `
+					<h3>Data Pribadi</h3>
+					<table class="table table-striped table-middle">
+						${group_kepala}
+						${group_anggota}
+						<tr>
+							<th width="20%">NIK Warga</th>
+							<td width="1%">:</td>
+							<td id="nik_kepala_keluarga">${e.data.nik_warga}</td>
+						</tr>
+						<tr>
+							<th>Nama Warga</th>
+							<td>:</td>
+							<td id="nama_kepala_keluarga">${e.data.nama_warga}</td>
+						</tr>
+						<tr>
+							<th>Tempat Lahir</th>
+							<td>:</td>
+							<td id="tempat_lahir_warga">${e.data.tempat_lahir_warga}</td>
+						</tr>
+						<tr>
+							<th>Tanggal Lahir</th>
+							<td>:</td>
+							<td id="tanggal_lahir_warga">${e.data.tanggal_lahir_warga}</td>
+						</tr>
+						<tr>
+							<th>Jenis Kelamin</th>
+							<td>:</td>
+							<td id="jk">${e.data.jenis_kelamin_warga}</td>
+						</tr>
+						<tr>
+							<th>Agama</th>
+							<td>:</td>
+							<td id="agama_warga">${e.data.agama_warga}</td>
+						</tr>
+						<tr>
+							<th>Pendidikan Terakhir</th>
+							<td>:</td>
+							<td id="pendidikan_terakhir_warga">${e.data.pendidikan_terakhir_warga}</td>
+						</tr>
+						<tr>
+							<th>Pekerjaan</th>
+							<td>:</td>
+							<td id="pekerjaan_warga">${e.data.pekerjaan_warga}</td>
+						</tr>
+					</table>
+
+					<h3>Data Daerah Tujuan</h3>
+					<table class="table table-striped table-middle">
+						<tr>
+							<th width="20%">Alamat Tujuan</th>
+							<td width="1%">:</td>
+							<td id="alamat_tujuan">${e.data.alamat_warga}</td>
+						</tr>
+						<tr>
+							<th width="20%">RT</th>
+							<td width="1%">:</td>
+							<td id="rt_warga">${e.data.rt_warga}</td>
+						</tr>
+						<tr>
+							<th>RW</th>
+							<td>:</td>
+							<td id="rw_warga">${e.data.rw_warga}</td>
+						</tr>
+						<tr>
+							<th>Desa/Kelurahan</th>
+							<td>:</td>
+							<td id="kelurahan">${e.data.desa_kelurahan_warga}</td>
+						</tr>
+						<tr>
+							<th>Kecamatan</th>
+							<td>:</td>
+							<td id="kecamatan">${e.data.kecamatan_warga}</td>
+						</tr>
+						<tr>
+							<th>Kabupaten/Kota</th>
+							<td>:</td>
+							<td id="kokab">${e.data.kabupaten_kota_warga}</td>
+						</tr>
+						<tr>
+							<th>Provinsi</th>
+							<td>:</td>
+							<td id="provinsi">${e.data.provinsi_warga}</td>
+						</tr>
+						<tr>
+							<th>Negara</th>
+							<td>:</td>
+							<td id="negara">${e.data.negara_warga}</td>
+						</tr>
+					</table>
+
+					<h3>Data Kepindahan</h3>
+					<table class="table table-striped table-middle">
+						<tr>
+							<th width="20%">Alamat Asal</th>
+							<td width="1%">:</td>
+							<td id="alamat_asal">${e.data.alamat_asal}</td>
+						</tr>
+						<tr>
+							<th>Tanggal Pindah</th>
+							<td>:</td>
+							<td id="tanggal_pindah">${e.data.tanggal_pindah}</td>
+						</tr>
+						<tr>
+							<th>Alasan Pindah</th>
+							<td>:</td>
+							<td id="alasan_pindah">${e.data.alasan_pindah}</td>
+						</tr>
+					</table>
+			`
+
+				$('#v_detail').html(htmlnya)
+				$('#modal_detail').modal('show')
+			}
+		})
+	}
+</script>

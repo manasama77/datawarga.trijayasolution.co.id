@@ -59,35 +59,35 @@ $hasil_mutasi_kd_17 = mysqli_query($db, $query_mutasi_kd_17);
 $jumlah_mutasi_kd_17 = mysqli_fetch_assoc($hasil_mutasi_kd_17);
 
 */
-                              //MUTASI MASUK
+//MUTASI MASUK
 //hitung total mutasi
-$query_mutasi = "SELECT COUNT(*) AS total FROM mutasi_masuk";
-$hasil_mutasi = mysqli_query($db, $query_mutasi);
+$query_mutasi        = "SELECT COUNT(*) AS total FROM mutasi_masuk";
+$hasil_mutasi        = mysqli_query($db, $query_mutasi);
 $jumlah_mutasi_masuk = mysqli_fetch_assoc($hasil_mutasi);
 
 //hitung mutasi masuk laki-laki
 
-$query_mutasi_l = "SELECT COUNT(*) AS total FROM warga JOIN mutasi_masuk ON warga.nik_warga= mutasi_masuk.id_warga WHERE jenis_kelamin_warga = 'L'";
-$hasil_mutasi_l = mysqli_query($db, $query_mutasi_l);
+$query_mutasi_l        = "SELECT COUNT(*) AS total FROM warga RIGHT JOIN mutasi_masuk ON warga.id_warga = mutasi_masuk.id_warga WHERE warga.jenis_kelamin_warga = 'L'";
+$hasil_mutasi_l        = mysqli_query($db, $query_mutasi_l);
 $jumlah_mutasi_masuk_l = mysqli_fetch_assoc($hasil_mutasi_l);
 
 // hitung mutasi masuk perempuan
-$query_mutasi_p = "SELECT COUNT(*) AS total FROM warga JOIN mutasi_masuk ON warga.nik_warga= mutasi_masuk.id_warga WHERE jenis_kelamin_warga = 'P'";
-$hasil_mutasi_p = mysqli_query($db, $query_mutasi_p);
+$query_mutasi_p        = "SELECT COUNT(*) AS total FROM warga RIGHT JOIN mutasi_masuk ON warga.id_warga = mutasi_masuk.id_warga WHERE jenis_kelamin_warga = 'P'";
+$hasil_mutasi_p        = mysqli_query($db, $query_mutasi_p);
 $jumlah_mutasi_masuk_p = mysqli_fetch_assoc($hasil_mutasi_p);
 
 // hitung mutasi lebih dari 17 tahun
-$query_mutasi_ld_17 = "SELECT COUNT(*) AS total FROM warga JOIN mutasi_masuk ON warga.nik_warga = mutasi_masuk.id_warga WHERE TIMESTAMPDIFF(YEAR, tanggal_lahir_warga, CURDATE()) >= 17 AND tanggal_lahir_warga != '0000-00-00'";
-$hasil_mutasi_ld_17 = mysqli_query($db, $query_mutasi_ld_17);
+$query_mutasi_ld_17        = "SELECT COUNT(*) AS total FROM warga RIGHT JOIN mutasi_masuk ON warga.id_warga = mutasi_masuk.id_warga WHERE TIMESTAMPDIFF(YEAR, tanggal_lahir_warga, CURDATE()) >= 17 AND tanggal_lahir_warga != '0000-00-00'";
+$hasil_mutasi_ld_17        = mysqli_query($db, $query_mutasi_ld_17);
 $jumlah_mutasi_masuk_ld_17 = mysqli_fetch_assoc($hasil_mutasi_ld_17);
 
 // hitung mutasi kurang dari 17 tahun
-$query_mutasi_kd_17 = "SELECT COUNT(*) AS total FROM warga JOIN mutasi_masuk ON warga.nik_warga = mutasi_masuk.id_warga WHERE TIMESTAMPDIFF(YEAR, tanggal_lahir_warga, CURDATE()) < 17 AND tanggal_lahir_warga != '0000-00-00'";
-$hasil_mutasi_kd_17 = mysqli_query($db, $query_mutasi_kd_17);
+$query_mutasi_kd_17        = "SELECT COUNT(*) AS total FROM warga RIGHT JOIN mutasi_masuk ON warga.id_warga = mutasi_masuk.id_warga WHERE TIMESTAMPDIFF(YEAR, tanggal_lahir_warga, CURDATE()) < 17 AND tanggal_lahir_warga != '0000-00-00'";
+$hasil_mutasi_kd_17        = mysqli_query($db, $query_mutasi_kd_17);
 $jumlah_mutasi_masuk_kd_17 = mysqli_fetch_assoc($hasil_mutasi_kd_17);
 
 
-                              //MUTASI keluar
+//MUTASI keluar
 //hitung total mutasi
 $query_mutasi = "SELECT COUNT(*) AS total FROM mutasi_keluar";
 $hasil_mutasi = mysqli_query($db, $query_mutasi);
