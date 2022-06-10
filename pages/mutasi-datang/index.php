@@ -139,6 +139,9 @@ unset($_SESSION['warning']);
 </div>
 <?php include('../_partials/bottom.php') ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" integrity="sha512-x/vqovXY/Q4b+rNjgiheBsA/vbWA3IVvsS8lkQSX1gQ4ggSJx38oI2vREZXpTzhAv6tNUaX81E7QBBzkpDQayA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment-with-locales.min.js" integrity="sha512-vFABRuf5oGUaztndx4KoAEUVQnOvAIFs59y4tO0DILGWhQiFnFHiR+ZJfxLDyJlXgeut9Z07Svuvm+1Jv89w5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/locale/id.min.js" integrity="sha512-he8U4ic6kf3kustvJfiERUpojM8barHoz0WYpAUDWQVn61efpm3aVAD8RWL8OloaDDzMZ1gZiubF9OSdYBqHfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 	$(document).ready(function() {
 		$('.btn_detail').on('click', function(e) {
@@ -221,7 +224,7 @@ unset($_SESSION['warning']);
 						<tr>
 							<th>Tanggal Lahir</th>
 							<td>:</td>
-							<td id="tanggal_lahir_warga">${e.data.tanggal_lahir_warga}</td>
+							<td id="tanggal_lahir_warga">${moment(e.data.tanggal_lahir_warga).format('DD MMMM YYYY')}</td>
 						</tr>
 						<tr>
 							<th>Jenis Kelamin</th>
@@ -248,9 +251,11 @@ unset($_SESSION['warning']);
 					<h3>Data Daerah Tujuan</h3>
 					<table class="table table-striped table-middle">
 						<tr>
-							<th width="20%">Alamat Tujuan</th>
-							<td width="1%">:</td>
-							<td id="alamat_tujuan">${e.data.alamat_warga}</td>
+							<th width="20%" style="vertical-align: top !important;">Alamat Tujuan</th>
+							<td width="1%" style="vertical-align: top !important;">:</td>
+							<td id="alamat_asal" style="vertical-align: top !important;">
+								${e.data.alamat_warga.replace(/(?:\r\n|\r|\n)/g, '<br>')}
+							</td>
 						</tr>
 						<tr>
 							<th width="20%">RT</th>
@@ -292,14 +297,16 @@ unset($_SESSION['warning']);
 					<h3>Data Kepindahan</h3>
 					<table class="table table-striped table-middle">
 						<tr>
-							<th width="20%">Alamat Asal</th>
-							<td width="1%">:</td>
-							<td id="alamat_asal">${e.data.alamat_asal}</td>
+							<th width="20%" style="vertical-align: top !important;">Alamat Asal</th>
+							<td width="1%" style="vertical-align: top !important;">:</td>
+							<td id="alamat_asal" style="vertical-align: top !important;">
+								${e.data.alamat_asal.replace(/(?:\r\n|\r|\n)/g, '<br>')}
+							</td>
 						</tr>
 						<tr>
 							<th>Tanggal Pindah</th>
 							<td>:</td>
-							<td id="tanggal_pindah">${e.data.tanggal_pindah}</td>
+							<td id="tanggal_pindah">${moment(e.data.tanggal_pindah).format('DD MMMM YYYY')}</td>
 						</tr>
 						<tr>
 							<th>Alasan Pindah</th>
