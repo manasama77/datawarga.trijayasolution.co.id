@@ -58,7 +58,8 @@ if ($_SESSION['jenis_kepindahan'] == "Kepala Keluarga") {
 	$id_keluarga = mysqli_insert_id($db);
 	$_SESSION['id_keluarga'] = $id_keluarga;
 } elseif ($_SESSION['jenis_kepindahan'] == "Anggota Keluarga") {
-	$sql_warga_has_kartu_keluarga = "INSERT INTO warga_has_kartu_keluarga (id_warga, id_keluarga) VALUES (" . $id_warga . ", " . $_SESSION['id_keluarga'] . ")";
+	$sql_warga_has_kartu_keluarga   = "INSERT INTO warga_has_kartu_keluarga (id_warga, id_keluarga) VALUES (" . $id_warga . ", " . $_SESSION['id_keluarga'] . ")";
+	$query_warga_has_kartu_keluarga = mysqli_query($db, $sql_warga_has_kartu_keluarga);
 }
 
 $sql_mutasi = "INSERT INTO mutasi_masuk 
