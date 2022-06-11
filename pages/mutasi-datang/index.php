@@ -229,7 +229,7 @@ unset($_SESSION['warning']);
 						<tr>
 							<th>Jenis Kelamin</th>
 							<td>:</td>
-							<td id="jk">${e.data.jenis_kelamin_warga}</td>
+							<td id="jk">${(e.data.jenis_kelamin_warga == "L") ? "Laki-laki" : "Perempuan"}</td>
 						</tr>
 						<tr>
 							<th>Agama</th>
@@ -254,7 +254,7 @@ unset($_SESSION['warning']);
 							<th width="20%" style="vertical-align: top !important;">Alamat Tujuan</th>
 							<td width="1%" style="vertical-align: top !important;">:</td>
 							<td id="alamat_asal" style="vertical-align: top !important;">
-								${e.data.alamat_warga.replace(/(?:\r\n|\r|\n)/g, '<br>')}
+								${e.data.alamat_tujuan.replace(/(?:\r\n|\r|\n)/g, '<br>')}
 							</td>
 						</tr>
 						<tr>

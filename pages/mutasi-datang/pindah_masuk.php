@@ -73,7 +73,7 @@ if (isset($_SESSION['warning'])) {
 			<th width="20%">Nama Warga</th>
 			<td width="1%">:</td>
 			<td>
-				<input type="text" placeholder="Nama Kepala Keluarga" class="form-control" name="nama_warga" value="<?= $_SESSION['nama_warga']; ?>" required>
+				<input type="text" placeholder="Nama Warga" class="form-control" name="nama_warga" value="<?= $_SESSION['nama_warga']; ?>" required>
 			</td>
 		</tr>
 		<tr>

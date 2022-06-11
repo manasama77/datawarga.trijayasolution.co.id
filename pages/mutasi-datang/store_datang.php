@@ -63,9 +63,9 @@ if ($_SESSION['jenis_kepindahan'] == "Kepala Keluarga") {
 }
 
 $sql_mutasi = "INSERT INTO mutasi_masuk 
-	(id_warga, id_keluarga, alamat_asal, tanggal_pindah, alasan_pindah, jenis_kepindahan) 
+	(id_warga, id_keluarga, alamat_asal, alamat_tujuan, tanggal_pindah, alasan_pindah, jenis_kepindahan, agama_warga, pendidikan_terakhir_warga, pekerjaan_warga, rt_warga, rw_warga, desa_kelurahan_warga, kecamatan_warga, kabupaten_kota_warga, provinsi_warga) 
 	VALUES
-	('" . $id_warga . "', '" . $_SESSION['id_keluarga'] . "', '" . $_SESSION['alamat_asal'] . "', '" . $_SESSION['tanggal_pindah'] . "', '" . $_SESSION['alasan_pindah'] . "', '" . $_SESSION['jenis_kepindahan'] . "');";
+	('" . $id_warga . "', '" . $_SESSION['id_keluarga'] . "', '" . $_SESSION['alamat_asal'] . "', '" . $_SESSION['alamat_tujuan'] . "', '" . $_SESSION['tanggal_pindah'] . "', '" . $_SESSION['alasan_pindah'] . "', '" . $_SESSION['jenis_kepindahan'] . "', '" . $_SESSION['agama_warga'] . "', '" . $_SESSION['pendidikan_terakhir_warga'] . "', '" . $_SESSION['pekerjaan_warga'] . "', '" . $_SESSION['rt_warga'] . "', '" . $_SESSION['rw_warga'] . "', '" . $_SESSION['kelurahan'] . "', '" . $_SESSION['kecamatan'] . "', '" . $_SESSION['kokab'] . "', '" . $_SESSION['provinsi'] . "' );";
 $query_mutasi = mysqli_query($db, $sql_mutasi);
 
 //cek keberhasilan pendambahan data
