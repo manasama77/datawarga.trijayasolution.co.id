@@ -1,0 +1,7 @@
+🌐 https://datawarga.trijayasolution.co.id/
+Update 2022-06-12
+🎯 Perubahan Module Data Mutasi -> Pindah Keluar
+    ✔ Module Create & Edit
+    ✔ Module Show Detail Pop UP
+    ✔ Module Hapus 
+    ✔ Modul Print
