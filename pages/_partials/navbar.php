@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#" style="padding-top: 5px;">
-        <img src="../../assets/img/kng.jpg" alt="Logo" style="width: 30px;" />
+        <img src="../../assets/img/<?= LOGO; ?>" alt="Logo" style="width: 30px;" />
       </a>
     </div>
 
@@ -19,13 +19,13 @@
         <li><a href="../dasbor"><i class="fa fa-home"></i> Dashboard</a></li>
         <li><a href="../warga"><i class="fa fa-user"></i> Data Penduduk</a></li>
         <li><a href="../kartu-keluarga"><i class="fa fa-users"></i> Data Kartu Keluarga</a></li>
-        <li class="dropdown">
+        <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-exchange fa-fw"></i> Mutasi <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="../mutasi-datang"><i class="fa fa-long-arrow-right fa-fw"></i> Pindah Datang</a></li>
             <li><a href="../mutasi-keluar"><i class="fa fa-long-arrow-left fa-fw"></i> Pindah Keluar</a></li>
           </ul>
-        </li>
+        </li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-newspaper-o fa-fw"></i> Peristiwa <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -61,6 +61,12 @@
             </li>
             <li>
               <a href="../peristiwa-surat-pengantar" class="list-group-item">Surat Pengantar</a>
+            </li>
+            <li>
+              <a href="../peristiwa-belum-menikah" class="list-group-item">Belum Menikah</a>
+            </li>
+            <li>
+              <a href="../peristiwa-belum-mempunyai-rumah" class="list-group-item">Belum Mempunyai Rumah</a>
             </li>
           </ul>
         </li>

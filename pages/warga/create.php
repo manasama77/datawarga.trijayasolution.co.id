@@ -97,7 +97,7 @@
       <th>RT</th>
       <td>:</td>
       <td>
-        <input type="number" class="form-control" name="rt_warga" value="1" min="1" required />
+        <input type="number" class="form-control" name="rt_warga" min="1" required />
       </td>
     </tr>
     <!--
@@ -115,7 +115,7 @@
       <th>RW</th>
       <td>:</td>
       <td>
-        <input type="number" class="form-control" name="rw_warga" value="1" min="1" required />
+        <input type="number" class="form-control" name="rw_warga" min="1" required />
       </td>
     </tr>
     <tr>

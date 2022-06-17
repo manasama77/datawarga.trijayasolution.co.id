@@ -1,6 +1,7 @@
 <?php
 require_once("../../assets/lib/fpdf/fpdf.php");
 require_once("../../config/koneksi.php");
+require('../constant.php');
 
 class PDF extends FPDF
 {
@@ -8,16 +9,16 @@ class PDF extends FPDF
     function Header()
     {
         // Logo
-        $this->Image('../../assets/img/kng.jpg', 20, 10);
+        $this->Image('../../assets/img/' . LOGO, 20, 10);
 
         // Arial bold 15
         $this->SetFont('Times', 'B', 15);
         // Move to the right
         // $this->Cell(60);
         // Title
-        $this->Cell(200, 8, 'PEMERINTAH KOTA TANGERANG', 0, 1, 'C');
-        $this->Cell(200, 8, 'KECAMATAN GEBANG RAYA', 0, 1, 'C');
-        $this->Cell(200, 8, 'KELURAHAN PERIUK', 0, 1, 'C');
+        $this->Cell(200, 8, PRINT_KOKAB, 0, 1, 'C');
+        $this->Cell(200, 8, PRINT_KECAMATAN, 0, 1, 'C');
+        $this->Cell(200, 8, PRINT_DESA, 0, 1, 'C');
         // Line break
         $this->Ln(5);
 
@@ -72,8 +73,7 @@ $pdf->cell(80, 7, strtoupper($data_warga[0]['nik_warga']), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Nama', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-// $pdf->cell(80, 7, substr(strtoupper($data_warga[0]['nama_warga']), 0, 17), 0, 1, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['nama_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['nama_warga']), 0, 17), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Tempat Lahir', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
@@ -85,33 +85,31 @@ $pdf->cell(80, 7, ($data_warga[0]['tanggal_lahir_warga'] != '0000-00-00') ? date
 
 $pdf->cell(45, 7, 'Jenis Kelamin', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-$pdf->cell(80, 7, strtoupper(($data_warga[0]['jenis_kelamin_warga'] == "P") ? "perempuan" : "laki-laki"), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['jenis_kelamin_warga']), 0, 1), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Alamat KTP', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-// $pdf->cell(80, 7, substr(strtoupper($data_warga[0]['alamat_ktp_warga']), 0, 20), 0, 1, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['alamat_ktp_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['alamat_ktp_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Alamat', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-// $pdf->cell(80, 7, substr(strtoupper($data_warga[0]['alamat_warga']), 0, 20), 0, 1, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['alamat_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['alamat_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Desa/Kelurahan', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['desa_kelurahan_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['desa_kelurahan_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Kecamatan', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['kecamatan_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['kecamatan_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Kabupaten/Kota', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['kabupaten_kota_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['kabupaten_kota_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Provinsi', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
-$pdf->cell(80, 7, strtoupper($data_warga[0]['provinsi_warga']), 0, 1, 'L');
+$pdf->cell(80, 7, substr(strtoupper($data_warga[0]['provinsi_warga']), 0, 20), 0, 1, 'L');
 
 $pdf->cell(45, 7, 'Negara', 0, 0, 'L');
 $pdf->cell(2, 7, ':', 0, 0, 'L');
