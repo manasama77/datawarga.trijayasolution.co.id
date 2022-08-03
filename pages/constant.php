@@ -13,3 +13,4 @@ define("TTD_NAME", " Arsadi");
 define("PRINT_KOKAB",  "PEMERINTAH KOTA TANGERANG");
 define("PRINT_KECAMATAN",  "KECAMATAN PERIUK");
 define("PRINT_DESA",  "KELURAHAN GEBANG RAYA");
+define("INSTANSI",  "Pemerintah Kelurahan Gebang Raya");
