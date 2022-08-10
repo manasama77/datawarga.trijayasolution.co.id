@@ -39,13 +39,17 @@ require('../constant.php');
               <div class="form-group">
                 <input class="form-control" placeholder="Kata Sandi" name="password_user" type="password" value="" required="">
               </div>
-              <!--
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
+              <div class="form-group">
+                <label for="password">Captcha</label>
+                <div class="row">
+                  <div class="col-sm-12 col-md-6">
+                    <input type="text" class="form-control" name="captcha" id="captcha" minlength="4" maxlength="4" required />
+                  </div>
+                  <div class="col-sm-12 col-md-6">
+                    <img src="../../assets/captcha.php" alt="PHP Captcha">
+                  </div>
+                </div>
+              </div>
               <button type="submit" class="btn btn-lg btn-primary btn-block">Masuk </button>
             </fieldset>
           </form>
