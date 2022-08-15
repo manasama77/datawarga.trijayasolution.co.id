@@ -5,12 +5,24 @@ include('../../config/koneksi.php');
 
 $sql   = "
 SELECT  
-    skck.id,
-    skck.tanggal_pembuatan,
-    warga.nama_warga
-FROM skck 
-LEFT JOIN warga ON warga.id_warga = skck.warga_id 
-ORDER BY skck.id DESC
+    sk_domisili_lembaga.id,
+    sk_domisili_lembaga.jenis_lembaga,
+    sk_domisili_lembaga.nama_lembaga,
+    sk_domisili_lembaga.alamat,
+    sk_domisili_lembaga.tahun_pendirian,
+    sk_domisili_lembaga.sk_pendirian,
+    sk_domisili_lembaga.jumlah_pegawai,
+    sk_domisili_lembaga.pengurus,
+    sk_domisili_lembaga.pimpinan,
+    sk_domisili_lembaga.sekertaris,
+    sk_domisili_lembaga.bendahara,
+    sk_domisili_lembaga.masa_berlaku,
+    sk_domisili_lembaga.tanggal_pembuatan,
+    sk_domisili_lembaga.nomor_surat,
+    sk_domisili_lembaga.nama_kepala_desa,
+    sk_domisili_lembaga.nrp
+FROM sk_domisili_lembaga 
+ORDER BY sk_domisili_lembaga.id DESC
 ";
 $query = mysqli_query($db, $sql);
 ?>
@@ -18,7 +30,7 @@ $query = mysqli_query($db, $sql);
 <div class="row page-header">
     <div class="col-sm-12 col-md-6">
         <h4>
-            Peristiwa - Surat Pengantar Catatan Kepolisian
+            Peristiwa - Surat Keterangan Domisili Perusahaan, Yayasan, Sekolah, Organisasi
         </h4>
     </div>
     <div class="col-sm-12 col-md-6 text-right">
@@ -31,11 +43,13 @@ $query = mysqli_query($db, $sql);
     <div class="col-12">
         <div class="table-responsive">
             <table id="table_data" class="table table-bordered" style="width: 100%;">
-                <caption>Daftar Surat Pengantar Catatan Kepolisian</caption>
+                <caption>Daftar Surat Keterangan Domisili Perusahaan, Yayasan, Sekolah, Organisasi</caption>
                 <thead class="bg-primary">
                     <tr>
-                        <th>Nama Warga</th>
                         <th>Tanggal Pembuatan</th>
+                        <th>Nama Lembaga</th>
+                        <th>Jenis Lembaga</th>
+                        <th>Masa Berlaku</th>
                         <td class="text-center">
                             <i class="fa fa-cog"></i>
                         </td>
@@ -45,13 +59,15 @@ $query = mysqli_query($db, $sql);
                     <?php if (mysqli_num_rows($query) > 0) { ?>
                         <?php while ($row = mysqli_fetch_assoc($query)) { ?>
                             <tr>
-                                <td><?= $row['nama_warga']; ?></td>
                                 <td>
                                     <?php
                                     $tgl_obj = new DateTime($row['tanggal_pembuatan']);
                                     echo $tgl_obj->format('d-m-Y');
                                     ?>
                                 </td>
+                                <td><?= $row['nama_lembaga']; ?></td>
+                                <td><?= $row['jenis_lembaga']; ?></td>
+                                <td><?= $row['masa_berlaku']; ?></td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="edit.php?id=<?= $row['id']; ?>" class="btn btn-warning" title="Edit Data">
@@ -60,7 +76,7 @@ $query = mysqli_query($db, $sql);
                                         <a href="print.php?id=<?= $row['id']; ?>" target="_blank" class="btn btn-success" title="Print Data">
                                             <i class="fa fa-print fa-fw"></i>
                                         </a>
-                                        <button type="button" class="btn btn-danger" title="Delete Data" onclick="deleteData(<?= $row['id']; ?>, '<?= $row['nama_warga']; ?>')">
+                                        <button type="button" class="btn btn-danger" title="Delete Data" onclick="deleteData(<?= $row['id']; ?>, '<?= $row['nama_lembaga']; ?>')">
                                             <i class="fa fa-trash fa-fw"></i>
                                         </button>
                                     </div>
