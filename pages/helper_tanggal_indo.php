@@ -67,3 +67,13 @@ function hari_indo($hari)
         return "Minggu";
     }
 }
+
+
+// hitung umur
+function umur($tanggal)
+{
+    $dob = new DateTime($tanggal);
+    $now = new DateTime();
+    $age = $now->diff($dob);
+    return $age->y;
+}
